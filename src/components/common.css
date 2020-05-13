@@ -1,0 +1,19 @@
+.font {
+  color: #42474E;
+}
+
+.font--header {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: bold;
+}
+
+.font--subHeader {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.font--body {
+  font-size: 16px;
+  line-height: 20px;
+}

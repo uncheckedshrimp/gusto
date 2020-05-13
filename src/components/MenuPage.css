@@ -1,0 +1,32 @@
+.image {
+  height: 200px;
+}
+
+.menuPage {
+  background-color: red;
+}
+
+.pageHeader {
+  color: #42474E;
+  font-size: 20px;
+}
+
+.root {
+  max-width: 345,
+}
+
+.media {
+  height: 0,
+}
+
+.expand {
+  transform: 'rotate(0deg)',
+}
+
+expandOpen {
+  transform: 'rotate(180deg)',
+}
+
+avatar {
+  backgroundColor: red,
+}
