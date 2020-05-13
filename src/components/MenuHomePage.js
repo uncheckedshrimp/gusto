@@ -7,7 +7,7 @@ export default function MenuHomePage (props) {
   const { menu } = props
 
   // this will only render a menu section if that section contains items.
-  // to prevent displaying empty section.
+  // to prevent displaying empty sections.
   const renderMenuSection = (menuSection) => {
     if(menuSection.MenuItems.length > 0){
       return (

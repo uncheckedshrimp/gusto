@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MenuItemSet (props) {
-  console.log(props.itemSetConfig);
   const {
     MenuItemOptionSetItems,
     IsMasterOptionSet
@@ -21,7 +20,7 @@ export default function MenuItemSet (props) {
   const classes = useStyles();
 
   // *** Metioned in the brief ***
-  // if IsMasterOptionSet is false, the the item price overrides the price in the main section
+  // If IsMasterOptionSet is false, then the item price is independant and overrides the price from the main section
   function getPrice(itemPrice) {
     const price = IsMasterOptionSet ? itemPrice : itemPrice + rootPrice;
     const totalPrice = '€' + price.toFixed(2);

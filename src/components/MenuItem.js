@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import headerImage from '../assets/headerImage.jpg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,12 +35,25 @@ const useStyles = makeStyles((theme) => ({
 export default function MenuItem(props) {
   const {
     Name,
-    ImageUrl,
     Description,
     MenuItemOptionSets,
     ActualPrice
   } = props.itemConfig;
+  // In the absence of an actual image from the server, I have put in a default.
+  const ImageUrl = props.itemConfig.ImageUrl || headerImage
   const classes = useStyles();
+
+  const renderTotalPrice = (ActualPrice) => {
+    return (
+      <Typography
+        className={classes.text}
+        gutterBottom
+        variant="body2"
+      >
+        €{ActualPrice.toFixed(2)}
+      </Typography>
+    )
+  }
 
   return (
     <div className={classes.root}>
@@ -91,14 +105,19 @@ export default function MenuItem(props) {
             </Grid>
           </Grid>
           <Grid item>
-          {MenuItemOptionSets.map((menuOptionset) => (
-            <MenuItemSet
-              key={menuOptionset.MenuItemOptionSetId}
-              itemSetConfig={menuOptionset}
-              itemRootPrice={ActualPrice}
-            >
-            </MenuItemSet>
-          ))}
+          {
+            MenuItemOptionSets.length > 0 ?
+            MenuItemOptionSets.map((menuOptionset) => (
+              <MenuItemSet
+                key={menuOptionset.MenuItemOptionSetId}
+                itemSetConfig={menuOptionset}
+                itemRootPrice={ActualPrice}
+              >
+              </MenuItemSet>
+            ))
+            :
+            renderTotalPrice(ActualPrice)
+          }
           </Grid>
         </Grid>
       </Grid>
