@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from './logo.svg';
-import Button from '@material-ui/core/Button';
-import NavigationHeader from './components/NavigationHeader';
+import Header from './components/Header';
 import MenuPage from './components/MenuPage';
 import './App.css';
 
@@ -13,12 +11,12 @@ function App() {
       .then((response) => response.json())
       .then((json) => setMenu(json));
   }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <NavigationHeader/>
-        <img src={logo} className="App-logo" alt="logo" />
-          {console.log(menu)}
+      <div className="App-header">
+        <Header/>
+        <div className="Menu-body">
           {menu.map((menuSection) => (
             <MenuPage
               key={menuSection.MenuSectionId}
@@ -27,7 +25,8 @@ function App() {
               {menuSection.Name}
             </MenuPage>
           ))}
-      </header>
+        </div>
+      </div>
     </div>
   );
 }

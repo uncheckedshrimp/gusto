@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {makeServer} from './server'
+import {makeServer} from './server/server'
 
 makeServer();
 
