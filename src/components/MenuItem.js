@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import MenuItemSet from './MenuItemSet';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +9,9 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  text:{
+    textAlign: "left"
   },
   paper: {
     padding: theme.spacing(2),
@@ -28,32 +32,73 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MenuItem(props) {
-  const { Name, ImageUrl, Description, MenuItemOptionSets} = props.itemConfig;
-  console.log('set items: ', MenuItemOptionSets && MenuItemOptionSets > 0);
+  const {
+    Name,
+    ImageUrl,
+    Description,
+    MenuItemOptionSets,
+    ActualPrice
+  } = props.itemConfig;
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
     <Paper className={classes.paper}>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+      >
         <Grid item>
           <ButtonBase className={classes.image}>
-            <img className={classes.img} alt={Name} src={ImageUrl+'?w=200'} />
+            <img
+              className={classes.img}
+              alt={Name}
+              src={ImageUrl+'?w=200'}
+            />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1">
+        <Grid
+          item
+          xs={12}
+          sm
+          container
+        >
+          <Grid
+            item
+            xs
+            container
+            direction="column"
+            spacing={2}
+          >
+            <Grid
+              item
+              xs
+            >
+              <Typography
+                variant="subtitle1"
+                gutterBottom
+                className={classes.text}
+              >
                 {Name}
               </Typography>
-              <Typography variant="body2" gutterBottom>
+              <Typography
+                variant="body2"
+                gutterBottom
+                className={classes.text}
+              >
                 {Description}
               </Typography>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="subtitle1">$19.00</Typography>
+          {MenuItemOptionSets.map((menuOptionset) => (
+            <MenuItemSet
+              key={menuOptionset.MenuItemOptionSetId}
+              itemSetConfig={menuOptionset}
+              itemRootPrice={ActualPrice}
+            >
+            </MenuItemSet>
+          ))}
           </Grid>
         </Grid>
       </Grid>

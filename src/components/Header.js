@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
       position: 'relative',
-      width: '80%',
-      minWidth: '345px',
+      width: '81%',
+      minWidth: '300px',
       marginTop: '25px'
   },
   overlay: {

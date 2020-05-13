@@ -3,15 +3,12 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia'
 import MenuItem from './MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 import clsx from 'clsx';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import './MenuPage.css';
-import './common.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,9 +32,10 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
+  divider: {
+    height: '1px',
+    backgroundColor: '#f7f7f7'
+  }
 }));
 
 export default function MenuPage(props) {
@@ -46,15 +44,25 @@ export default function MenuPage(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const { ImageUrl, Name, MenuItems } = props.pageConfig
+  const {
+    ImageUrl,
+    Name,
+    MenuItems
+  } = props.pageConfig
   return (
-    <Card className={classes.root} onClick={handleExpandClick}>
+    <Card
+      className={classes.root}
+    >
     <CardMedia
+      onClick={handleExpandClick}
       className={classes.media}
       image={ImageUrl+'?w=500'}
       title={Name}
     />
-    <CardActions disableSpacing>
+    <CardActions
+      disableSpacing
+      onClick={handleExpandClick}
+    >
       {Name}
       <IconButton
         className={clsx(classes.expand, {
@@ -68,6 +76,7 @@ export default function MenuPage(props) {
     </CardActions>
     <Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
+        <div className={classes.divider}></div>
         {MenuItems.map((item) => (
           <MenuItem
             key={item.MenuItemId}
