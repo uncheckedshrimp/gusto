@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Header from './components/Header';
-import MenuPage from './components/MenuPage';
-import './App.css';
+import MenuHomePage from './components/MenuHomePage'
 
 function App() {
 
+  // this will make the api request for our menu which is returned
+  // from the local mirage server in ./server
   let [menu, setMenu] = useState([]);
   useEffect(() => {
     fetch("/api/menu")
@@ -13,21 +13,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div className="App-header">
-        <Header/>
-        <div className="Menu-body">
-          {menu.map((menuSection) => (
-            <MenuPage
-              key={menuSection.MenuSectionId}
-              pageConfig={menuSection}
-            >
-              {menuSection.Name}
-            </MenuPage>
-          ))}
-        </div>
-      </div>
-    </div>
+    <MenuHomePage menu={menu}/>
   );
 }
 

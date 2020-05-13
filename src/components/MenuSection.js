@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MenuPage(props) {
+export default function MenuSection(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
